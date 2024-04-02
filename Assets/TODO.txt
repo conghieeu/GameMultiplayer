@@ -1,0 +1,13 @@
++ Xoay vật thể temp - DONE
+
++ Nút tương tác để xoay vật thể 
+
++ Có nên lưu dữ liệu của object contact ở temp hay không ? - DONE
+Nếu ở dạng thông tin thì lưu còn đồ vật tích trữ thì éo
+Vậy thì mỗi item sẽ được cấp id để vật thể đưa thông tin tới nhể
+
++ player sẽ spawn ở đâu khi start
+    - Vấn không lấy được playerObject ở network khi đang ở client
+
++ Camera client sau lấy đi Camera ở máy trước - DONE
+
