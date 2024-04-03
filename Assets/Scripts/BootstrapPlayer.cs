@@ -1,5 +1,8 @@
-using Unity.Netcode;
+
 using UnityEngine;
+using UnityEngine.UI;
+using Unity.Netcode;
+using Hieu;
 
 namespace Hieu.Network
 {
@@ -7,13 +10,23 @@ namespace Hieu.Network
     {
         public Vector3 _spawnPos;
 
+        FirstPersonController _firstPersonController;
+
+        private void Awake()
+        {
+            _firstPersonController = GetComponentInChildren<FirstPersonController>();
+        }
+
         private void Update()
         {
-            if (!IsOwner) return;
+            if (!IsOwner)
+            {
+                _firstPersonController.playerCamera.enabled = false;
+                return;
+            }
 
             if (Input.GetKeyDown(KeyCode.T))
             {
-                Debug.Log($"Di chuyển player tới chỗ chỉ định 1");
 
                 MovePlayer();
 
@@ -22,7 +35,6 @@ namespace Hieu.Network
 
         private void MovePlayer()
         {
-            Debug.Log($"Di chuyển player tới chỗ chỉ định 2");
             transform.position = _spawnPos;
         }
     }

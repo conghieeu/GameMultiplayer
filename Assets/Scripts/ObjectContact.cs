@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Hieu
 {
-    public class ObjectContact : MonoBehaviour
+    public class ObjectContact : NetworkBehaviour
     {
         [SerializeField] ObjectContactDisplay _objectContactDisplay;
         [SerializeField] Transform _models;
@@ -18,11 +19,11 @@ namespace Hieu
             Destroy(this.gameObject);
 
             // Set Temp 
-            Temp temp = Temp.Instance;
-            temp.gameObject.SetActive(true);
-            temp._ObjectContactDisplay = _objectContactDisplay;
-            
-            
+            // Temp temp = Temp.Instance;
+            // temp.gameObject.SetActive(true);
+            // temp._ObjectContactDisplay = _objectContactDisplay;
+
+
 
         }
     }

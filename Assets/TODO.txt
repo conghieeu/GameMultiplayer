@@ -11,3 +11,10 @@ Vậy thì mỗi item sẽ được cấp id để vật thể đưa thông tin 
 
 + Camera client sau lấy đi Camera ở máy trước - DONE
 
++ Thử làm vật thể nào đó di chuyển và truyền tín hiệu network - DONE
+
++ Làm temp nó truyền nhận
+    + Temp ở client tự nhiên mất - DONE - Do singleton
+    + Temp ở host di chuyển sai
+        + 
+    + _objContactHolder phải được truyền vào

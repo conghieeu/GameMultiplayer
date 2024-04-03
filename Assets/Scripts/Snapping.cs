@@ -1,31 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Hieu
 {
-    public class Snapping : MonoBehaviour
+    public class Snapping : NetworkBehaviour
     {
+        public NetworkObject _networkObjectPlayer;
         [SerializeField] Transform _temp;
         [SerializeField] bool _enableSnapping; // bật chế độ snapping
         [SerializeField] float _snapDistance = 6f; // Khoảng cách cho phép đặt 
         [SerializeField] float tilesize = 1;
         [SerializeField] Vector3 tileOffset = Vector3.zero;
 
-        public static Snapping Instance { get; private set; }
         public Transform _Temp { get => _temp; }
 
         RaycastExample _raycastExample;
 
         private void Awake()
         {
-            if (Instance) Destroy(this); else { Instance = this; }
-
             _raycastExample = GetComponent<RaycastExample>();
+            _networkObjectPlayer = GetComponentInParent<NetworkObject>();
         }
 
         void FixedUpdate()
         {
+            if (!_networkObjectPlayer.IsOwner) return;
+
             if (_Temp)
             {
                 SetPointPos();
@@ -39,9 +41,7 @@ namespace Hieu
                 {
                     _temp.GetComponent<Temp>()._IsDistance = false;
                 }
-
             }
-
         }
 
         private void SetSnapping()

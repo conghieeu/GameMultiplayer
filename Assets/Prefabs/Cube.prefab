@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1935529518281198345}
+  - component: {fileID: 5974836545783530834}
   - component: {fileID: 1570003390373209980}
   - component: {fileID: 1365066884733720333}
   m_Layer: 0
@@ -34,6 +35,27 @@ Transform:
   - {fileID: 2141110216723593057}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5974836545783530834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059139239411012875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1901761105
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &1570003390373209980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f1821133539bf147b04c409332cfe13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectContactDisplay: {fileID: 11400000, guid: 783ab5af3e7b02c458c996dfb350da8c, type: 2}
   _models: {fileID: 2141110216723593057}
   _tempPrefab: {fileID: 2664126912885288847, guid: c57632a8a1f89964aba8351363aa1f66, type: 3}
 --- !u!65 &1365066884733720333

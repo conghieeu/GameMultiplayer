@@ -373,14 +373,10 @@ public class FirstPersonController : NetworkBehaviour
 
     private void Movement()
     {
-        Debug.Log($"Player can move: {playerCanMove}");
         if (playerCanMove)
         {
-            Debug.Log($"Điều khiển đối tượng này: ", transform);
             // Calculate how fast we should be moving
             Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-            Debug.Log($"V Input: {targetVelocity}");
 
             // Checks if player is walking and isGrounded
             // Will allow head bob
@@ -392,8 +388,6 @@ public class FirstPersonController : NetworkBehaviour
             {
                 isWalking = false;
             }
-
-            Debug.Log($"Is Walking: {isWalking}");
 
             // All movement calculations shile sprint is active
             if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
@@ -447,7 +441,6 @@ public class FirstPersonController : NetworkBehaviour
 
                 rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
-                Debug.Log($"Thêm lực: {velocityChange}, {ForceMode.VelocityChange}");
             }
         }
     }
@@ -477,7 +470,6 @@ public class FirstPersonController : NetworkBehaviour
         {
             rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
             isGrounded = false;
-            Debug.Log($"Thêm lực nhảy: {jumpPower} ");
         }
 
         // When crouched and using toggle system, will uncrouch for a jump

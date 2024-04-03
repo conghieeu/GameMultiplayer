@@ -7,25 +7,26 @@ namespace Hieu.Network
     public class BootstrapManager : NetworkBehaviour
     {
         [SerializeField] Text _text;
+        [SerializeField] Transform _spawnPoint;
 
         private void OnClientConnected(ulong clientId)
         {
             print("Client connected with id: " + clientId);
+
+            NetworkManager.Singleton.LocalClient.PlayerObject.transform.position = _spawnPoint.position;
         }
 
         public override void OnNetworkDespawn()
         {
             base.OnNetworkDespawn();
 
-            if (IsClient)
-                NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnected;
+            NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnected;
         }
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
 
-            if (IsClient)
-                NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
+            NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
         }
 
         public void OnClickStartClient()

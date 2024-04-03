@@ -1,15 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
+
 namespace Hieu
 {
-    public class Temp : MonoBehaviour
+    public class Temp : NetworkBehaviour
     {
+        public NetworkObject _networkObjectPlayer;
         [SerializeField] ObjectContactDisplay _objectContactDisplay;
         [Space]
         [SerializeField] Transform _objectContact;
-        [SerializeField] Transform _parent;
+        [SerializeField] Transform _objContactHolder;
         [Space]
         [SerializeField] bool _canPlant;
         [SerializeField] bool _isDistance;
@@ -22,22 +25,25 @@ namespace Hieu
         [SerializeField] BoxSensor _sensorCheckCollider;
         [SerializeField] BoxSensor _sensorCheckAround;
 
-        public static Temp Instance { get; private set; }
         public bool _IsDistance { get => _isDistance; set => _isDistance = value; }
         public ObjectContactDisplay _ObjectContactDisplay { get => _objectContactDisplay; set => _objectContactDisplay = value; }
 
         private void Awake()
         {
-            if (Instance) Destroy(this); else { Instance = this; }
+            
         }
 
         private void Update()
         {
+            if (!_networkObjectPlayer.IsOwner) return;
+            
             PlantPrefab();
         }
 
         private void FixedUpdate()
         {
+            if (!_networkObjectPlayer.IsOwner) return;
+
             CheckPlant();
             SetMaterial();
         }
@@ -48,11 +54,11 @@ namespace Hieu
             {
                 gameObject.SetActive(false);
 
-                ObjectContact o = Instantiate(_objectContact, this.transform.position, this.transform.rotation, _parent).GetComponent<ObjectContact>();
+                ObjectContact o = Instantiate(_objectContact, this.transform.position, this.transform.rotation, _objContactHolder).GetComponent<ObjectContact>();
 
                 o._Models.transform.rotation = _models.rotation;
                 o._ObjectContactDisplay = _objectContactDisplay;
-            
+
             }
         }
 
